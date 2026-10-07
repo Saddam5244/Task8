@@ -1,0 +1,30 @@
+{
+  "name": "todo-list-backend",
+  "version": "1.0.0",
+  "description": "To-Do List API built with Node.js, Express.js, and MongoDB",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "node test-api.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "todo-api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "mongoose": "^8.7.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
