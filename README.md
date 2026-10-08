@@ -122,15 +122,29 @@ NODE_ENV=development
 
 ### API Endpoints Reference
 
-| Method | Endpoint | Description | Request Body / Query Params |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/api/health` | Service health status | None |
-| `GET` | `/api/tasks` | Get all tasks (supports search & filter) | `?search=keyword&status=pending&priority=high&sortBy=createdAt&order=desc` |
-| `GET` | `/api/tasks/:id` | Get single task by ID | Route param: `:id` |
-| `POST` | `/api/tasks` | Create a new task | `{ "title": "Task 1", "description": "...", "priority": "high", "dueDate": "2026-10-10" }` |
-| `PUT` | `/api/tasks/:id` | Update task details | `{ "title": "Updated", "description": "...", "priority": "medium" }` |
-| `PATCH`| `/api/tasks/:id/status` | Update task status | `{ "status": "completed" }` (`pending`, `in-progress`, `completed`) |
-| `DELETE`| `/api/tasks/:id` | Delete task | Route param: `:id` |
+| Method   | Endpoint                | Purpose                                       |
+| -------- | ----------------------- | --------------------------------------------- |
+| `GET`    | `/api/health`           | Check if the server is working                |
+| `GET`    | `/api/tasks`            | Get all tasks, search, filter, and sort tasks |
+| `GET`    | `/api/tasks/:id`        | Get a single task by ID                       |
+| `POST`   | `/api/tasks`            | Create a new task                             |
+| `PUT`    | `/api/tasks/:id`        | Update task details                           |
+| `PATCH`  | `/api/tasks/:id/status` | Update task status                            |
+| `DELETE` | `/api/tasks/:id`        | Delete a task                                 |
+
+**Task Status:** `pending`, `in-progress`, `completed`
+
+**Task Priority:** `high`, `medium`, `low`
+
+**Example Search:**
+`/api/tasks?search=Assignments`
+
+**Example Filter:**
+`/api/tasks?status=pending`
+
+**Example Sort:**
+`/api/tasks?sortBy=createdAt&order=desc`
+
 
 ### Controller-Service-Route Pattern
 
@@ -268,19 +282,5 @@ The frontend is pre-configured with `firebase.json` and `.firebaserc` pointing t
   cd ..
   firebase deploy --only hosting
   ```
-
-### Deploying Backend to Render
-1. Push your repository to GitHub.
-2. Go to [Render Dashboard](https://dashboard.render.com/) and click **New > Web Service**.
-3. Connect your GitHub repository.
-4. Set the following options:
-   - **Root Directory**: `backend`
-   - **Environment**: `Node`
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
-5. Add Environment Variables in Render:
-   - `MONGODB_URI`: *Your MongoDB Atlas connection URI*
-   - `NODE_ENV`: `production`
-   - `PORT`: `5000` (or leave default assigned by Render)
 
 ---
